@@ -54,6 +54,6 @@ func (c Config) Write() (err error) {
 	tomlBytes, err := c.Toml()
 	if err != nil { return err }
 
-	err = os.WriteFile(filePath, tomlBytes, os.ModeAppend)
+	err = os.WriteFile(filePath, tomlBytes, 0755)
 	return err
 }
