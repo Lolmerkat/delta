@@ -11,6 +11,12 @@ type Config struct {
 }
 
 func Initialize() (err error) {
+	dirPath := ConfigDir()
+	_, err = os.Stat(dirPath)
+	if err != nil && os.IsNotExist(err) {
+		os.Mkdir(dirPath, 0755)
+	}
+
 	filePath := ConfigPath()
 	_, err = os.Stat(filePath)
 
