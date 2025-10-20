@@ -3,7 +3,6 @@ package config
 import (
 	"fmt"
 	"os"
-	"os/user"
 
 	"github.com/adrg/xdg"
 )
@@ -31,15 +30,11 @@ func Empty() (config Config) {
 }
 
 func Default() (config Config, err error) {
-	user, err := user.Current()
-	if err != nil { return Empty(), err }
-
-	defaultRemote := fmt.Sprintf("https://github.com/%s/config", user.Name)
 	return Config {
 		Repositories: []Repository {
 			{
 				Name: "config",
-				Remote: defaultRemote,
+				Remote: "origin",
 				LocalPath: xdg.ConfigHome,
 			},
 		},
